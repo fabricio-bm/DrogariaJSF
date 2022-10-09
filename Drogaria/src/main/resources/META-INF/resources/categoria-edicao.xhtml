@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:metadata>
+    <f:viewAction action="#{categoriaBean.carregar()}"/>
+</f:metadata>
+
+<h:head>
+    <title>Categoria Edição</title>
+</h:head>
+
+<h:body>
+    <ui:include src="menu.xhtml"></ui:include>
+    <h:form>
+        <p:panel header="Inserir Categorias">
+            <p:messages closable="true" id="mensagem" ></p:messages>
+
+            <h:panelGrid columns="1">
+                <p:outputLabel value="Nome"></p:outputLabel>
+                <p:inputText maxlength="50" value="#{categoriaBean.categoria.nome}" required="true" requiredMessage="O campo nome é obrigatório"
+                ></p:inputText>
+            </h:panelGrid>
+
+            <p:panelGrid columns="2">
+                <p:commandButton value="Editar" actionListener="#{categoriaBean.salvar()}" update="mensagem"/>
+                <p:button value="Voltar" outcome="menu.xhtml?faces-redirect=true"></p:button>
+            </p:panelGrid>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

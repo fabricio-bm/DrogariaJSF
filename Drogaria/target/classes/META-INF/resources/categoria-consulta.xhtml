@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<f:metadata>
+    <f:viewAction action="#{categoriaBean.listar()}"/>
+</f:metadata>
+
+<h:head>
+    <title>Projeto com PrimeFaces</title>
+</h:head>
+
+<h:body>
+    <ui:include src="menu.xhtml"></ui:include>
+    <h:form>
+        <p:messages closable="true" id="mensagem"></p:messages>
+
+        <p:toolbarGroup align="right">
+            <p:button value="Voltar" outcome="menu.xhtml?faces-redirect=true"/>
+        </p:toolbarGroup>
+
+        <p:dataTable value="#{categoriaBean.categorias}" var="cursor" paginator="true" rows="10">
+
+
+            <f:facet name="header">
+                <h:outputText value="Categorias"/>
+            </f:facet>
+
+            <p:column headerText="Código" sortBy="#{cursor.codigo}" filterBy="#{cursor.codigo}"
+                      filterMatchMode="contains">
+                <h:outputText value="#{cursor.codigo}"/></p:column>
+
+
+            <p:column headerText="Nome" sortBy="#{cursor.nome}" filterBy="#{cursor.nome}"
+                      filterMatchMode="contains">
+                <h:outputText value="#{cursor.nome}"/></p:column>
+
+
+            <p:column headerText="Opções">
+                <p:commandButton value="Excluir" actionListener="#{categoriaBean.selecionarExclusao(cursor)}"></p:commandButton>
+                <p:commandButton value="Editar" actionListener="#{categoriaBean.selecionarEdicao(cursor)}"></p:commandButton>
+
+            </p:column>
+
+
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
